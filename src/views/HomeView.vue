@@ -221,7 +221,44 @@
                         </div>
                     </div>
 
-                    <button class="btn btn-primary">Export!</button>
+                    <div class="mb-5">
+                        <h3>Buttons</h3>
+
+                        <div class="mb-3">
+                            <label for="button--background-color" class="form-label">Background color</label>
+                            <select id="button--background-color" name="button--background-color" class="form-select" v-model="button.backgroundColor">
+                                <option value="primary">Primary</option>
+                                <option value="dark">Dark</option>
+                                <option value="light">Light</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="button--margin" class="form-label">Margin Y</label>
+                            <div class="input-group">
+                                <input id="button--margin" name="button--margin" type="number" class="form-control" v-model="button.margin">
+                                <span class="input-group-text">pixels</span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="button--border-radius" class="form-label">Border radius</label>
+                            <div class="input-group">
+                                <input id="button--border-radius" name="button--border-radius" type="number" class="form-control" v-model="button.borderRadius">
+                                <span class="input-group-text">pixels</span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="button--font-size" class="form-label">Font size</label>
+                            <div class="input-group">
+                                <input id="button--font-size" name="button--font-size" type="number" class="form-control" v-model="button.fontSize">
+                                <span class="input-group-text">pixels</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" @click="generateKitUi">Export!</button>
                 </form>
             </div>
 
@@ -232,44 +269,68 @@
 
                         <span class="preview--element" :style="{
                             fontFamily: fonts.titles.family,
-                            fontSize: fonts.titles.h1.size + 'px',
+                            fontSize: `${fonts.titles.h1.size}px`,
                             fontWeight: fonts.titles.h1.weight
                         }">This is a h1</span>
 
                         <span class="preview--element" :style="{
                             fontFamily: fonts.titles.family,
-                            fontSize: fonts.titles.h2.size + 'px',
+                            fontSize: `${fonts.titles.h2.size}px`,
                             fontWeight: fonts.titles.h2.weight
                         }">This is a h2</span>
 
                         <span class="preview--element" :style="{
                             fontFamily: fonts.titles.family,
-                            fontSize: fonts.titles.h3.size + 'px',
+                            fontSize: `${fonts.titles.h3.size}px`,
                             fontWeight: fonts.titles.h3.weight
                         }">This is a h3</span>
 
                         <span class="preview--element" :style="{
                             fontFamily: fonts.titles.family,
-                            fontSize: fonts.titles.h4.size + 'px',
+                            fontSize: `${fonts.titles.h4.size}px`,
                             fontWeight: fonts.titles.h4.weight
                         }">This is a h4</span>
 
                         <span class="preview--element" :style="{
                             fontFamily: fonts.titles.family,
-                            fontSize: fonts.titles.h5.size + 'px',
+                            fontSize: `${fonts.titles.h5.size}px`,
                             fontWeight: fonts.titles.h5.weight
                         }">This is a h5</span>
 
                         <span class="preview--element" :style="{
                             fontFamily: fonts.titles.family,
-                            fontSize: fonts.titles.h6.size + 'px',
+                            fontSize: `${fonts.titles.h6.size}px`,
                             fontWeight: fonts.titles.h6.weight
                         }">This is a h6</span>
 
                         <span class="preview--element" :style="{
                             fontFamily: fonts.paragraphs.family,
-                            fontSize: fonts.paragraphs.size + 'px',
+                            fontSize: `${fonts.paragraphs.size}px`,
                         }">This is a paragraph</span>
+
+                        <Button
+                            :background-color="buttonSelectedColor"
+                            :margin="button.margin"
+                            :border-radius="button.borderRadius"
+                            :font-size="button.fontSize"
+                            :font-family="fonts.paragraphs.family"
+                        />
+
+                        <Card>
+                            <template v-slot:cardBody>
+                                <h2 class="card-title" :style="{ fontFamily: fonts.titles.family }">Card title</h2>
+                                <p class="card-text" :style="{ fontFamily: fonts.paragraphs.family }">This is a card content.</p>
+                                <a href="#" class="btn btn-primary" :style="{
+                                    backgroundColor: buttonSelectedColor,
+                                    margin: `${button.margin}px 0`,
+                                    borderRadius: `${button.borderRadius}px`,
+                                    fontSize: `${button.fontSize}px`,
+                                    borderColor: buttonSelectedColor,
+                                    fontFamily: fonts.paragraphs.family,
+                                    color: cardTextColor
+                                }">Click me!</a>
+                            </template>
+                        </Card>
                     </div>
                 </div>
             </div>
@@ -278,8 +339,16 @@
 </template>
 
 <script>
+import Button from "@/components/Button.vue"
+import Card from "@/components/Card.vue"
+import { contrastingColor } from "@/assets/kitUiFunctions"
+
 export default {
     name: 'HomeView',
+    components: {
+        Card,
+        Button
+    },
     data() {
         return {
             container: {
@@ -364,7 +433,21 @@ export default {
                 'Nunito',
                 'Roboto',
                 'Lato'
-            ]
+            ],
+            button: {
+                backgroundColor: 'primary',
+                margin: 8,
+                borderRadius: 8,
+                fontSize: 16
+            }
+        }
+    },
+    computed: {
+        buttonSelectedColor() {
+            return this.button.backgroundColor === 'dark' ? this.colors.dark.default : this.button.backgroundColor === 'light' ? this.colors.light.default : this.colors.primary.default
+        },
+        cardTextColor() {
+            return contrastingColor(this.buttonSelectedColor)
         }
     },
     watch: {
@@ -372,22 +455,58 @@ export default {
             deep: true,
             immediate: true,
             handler(newValue, oldValue) {
-                //TODO: update darken and lighten variations on primary color
+                this.colors.primary.darken = this.variateColor(this.colors.primary.default, -25)
+                this.colors.primary.lighten = this.variateColor(this.colors.primary.default, 25)
             }
         },
         'colors.dark': {
             deep: true,
             immediate: true,
             handler(newValue, oldValue) {
-                //TODO: update darken and lighten variations on dark color
+                this.colors.dark.darken = this.variateColor(this.colors.primary.default, -25)
+                this.colors.dark.lighten = this.variateColor(this.colors.primary.default, 25)
             }
         },
         'colors.light': {
             deep: true,
             immediate: true,
             handler(newValue, oldValue) {
-                //TODO: update darken and lighten variations on light color
+                this.colors.light.darken = this.variateColor(this.colors.primary.default, -25)
+                this.colors.light.lighten = this.variateColor(this.colors.primary.default, 25)
             }
+        }
+    },
+    methods: {
+        variateColor(col, amt) {
+            // Source: https://css-tricks.com/snippets/javascript/lighten-darken-color/
+
+            let usePound = false
+
+            if (col[0] === "#") {
+                col = col.slice(1)
+                usePound = true
+            }
+
+            let num = parseInt(col,16)
+            let r = (num >> 16) + amt
+
+            if (r > 255) r = 255
+            else if  (r < 0) r = 0
+
+            let b = ((num >> 8) & 0x00FF) + amt
+
+            if (b > 255) b = 255
+            else if  (b < 0) b = 0
+
+            let g = (num & 0x0000FF) + amt
+
+            if (g > 255) g = 255
+            else if (g < 0) g = 0
+
+            return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16)
+        },
+        generateKitUi() {
+
         }
     }
 }
