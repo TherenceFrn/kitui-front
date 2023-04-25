@@ -342,6 +342,7 @@
 import Button from "@/components/Button.vue"
 import Card from "@/components/Card.vue"
 import { contrastingColor } from "@/assets/kitUiFunctions"
+import axios from 'axios';
 
 export default {
     name: 'HomeView',
@@ -506,7 +507,24 @@ export default {
             return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16)
         },
         generateKitUi() {
-
+            event.preventDefault()
+            // Envoie la requête POST à l'adresse spécifiée
+            axios.post('http://127.0.0.1:3001/css', this.$data, {
+              responseType: 'blob' // Spécifie le type de réponse attendu : blob
+            })
+              .then(response => {
+                // Crée un lien de téléchargement pour le fichier CSS
+                const url = window.URL.createObjectURL(new Blob([response.data]));
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', 'style.css');
+                document.body.appendChild(link);
+                link.click();
+              })
+              .catch(error => {
+                console.log(":)");
+                console.log(error);
+              });
         }
     }
 }
