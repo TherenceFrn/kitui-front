@@ -301,7 +301,6 @@
 
           <button class="btn btn-primary" @click="generateKitUi">Export!</button>
         </form>
-        <History />
       </div>
 
       <div class="col col-lg-6">
@@ -375,6 +374,9 @@
             </Card>
           </div>
         </div>
+      </div>
+      <div class="col col-lg-6">
+        <History />
       </div>
     </div>
   </main>
