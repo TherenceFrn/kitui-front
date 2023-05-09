@@ -134,7 +134,7 @@
               <label for="fonts--titles--family" class="form-label">Titles family</label>
               <select id="fonts--titles--family" name="fonts--titles--family" class="form-select"
                       v-model="fonts.titles.family">
-                <option v-for="value in familyValues" :value="value">{{ value }}</option>
+                <option v-for="value in familyValues" :value="value" :key="value">{{ value }}</option>
               </select>
             </div>
 
@@ -151,7 +151,7 @@
               <label for="fonts--titles--h1--weight" class="form-label">h1 weight</label>
               <select id="fonts--titles--h1--weight" name="fonts--titles--h1--weight" class="form-select"
                       v-model="fonts.titles.h1.weight">
-                <option v-for="value in weightValues" :value="value">{{ value }}</option>
+                <option v-for="value in weightValues" :value="value" :key="value">{{ value }}</option>
               </select>
             </div>
 
@@ -168,7 +168,7 @@
               <label for="fonts--titles--h2--weight" class="form-label">h2 weight</label>
               <select id="fonts--titles--h2--weight" name="fonts--titles--h2--weight" class="form-select"
                       v-model="fonts.titles.h2.weight">
-                <option v-for="value in weightValues" :value="value">{{ value }}</option>
+                <option v-for="value in weightValues" :value="value" :key="value">{{ value }}</option>
               </select>
             </div>
 
@@ -185,7 +185,7 @@
               <label for="fonts--titles--h3--weight" class="form-label">h3 weight</label>
               <select id="fonts--titles--h3--weight" name="fonts--titles--h3--weight" class="form-select"
                       v-model="fonts.titles.h3.weight">
-                <option v-for="value in weightValues" :value="value">{{ value }}</option>
+                <option v-for="value in weightValues" :value="value" :key="value">{{ value }}</option>
               </select>
             </div>
 
@@ -202,7 +202,7 @@
               <label for="fonts--titles--h4--weight" class="form-label">h4 weight</label>
               <select id="fonts--titles--h4--weight" name="fonts--titles--h4--weight" class="form-select"
                       v-model="fonts.titles.h4.weight">
-                <option v-for="value in weightValues" :value="value">{{ value }}</option>
+                <option v-for="value in weightValues" :value="value" :key="value">{{ value }}</option>
               </select>
             </div>
 
@@ -219,7 +219,7 @@
               <label for="fonts--titles--h5--weight" class="form-label">h5 weight</label>
               <select id="fonts--titles--h5--weight" name="fonts--titles--h5--weight" class="form-select"
                       v-model="fonts.titles.h5.weight">
-                <option v-for="value in weightValues" :value="value">{{ value }}</option>
+                <option v-for="value in weightValues" :value="value" :key="value">{{ value }}</option>
               </select>
             </div>
 
@@ -236,7 +236,7 @@
               <label for="fonts--titles--h6--weight" class="form-label">h6 weight</label>
               <select id="fonts--titles--h6--weight" name="fonts--titles--h6--weight" class="form-select"
                       v-model="fonts.titles.h6.weight">
-                <option v-for="value in weightValues" :value="value">{{ value }}</option>
+                <option v-for="value in weightValues" :value="value" :key="value">{{ value }}</option>
               </select>
             </div>
 
@@ -244,7 +244,7 @@
               <label for="fonts--paragraphs--family" class="form-label">Paragraphs family</label>
               <select id="fonts--paragraphs--family" name="fonts--paragraphs--family" class="form-select"
                       v-model="fonts.paragraphs.family">
-                <option v-for="value in familyValues" :value="value">{{ value }}</option>
+                <option v-for="value in familyValues" :value="value" :key="value">{{ value }}</option>
               </select>
             </div>
 
