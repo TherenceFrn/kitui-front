@@ -1,22 +1,38 @@
 <template>
-    <div>
-        History:
-        <div v-for="file in history" :key="file">
-            {{ file }}
+    <Card>
+        <template v-slot:cardBody>
+            <h2 class="title">
+                Historique:
+            </h2>
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action" v-for="file in history" :key="file">
+                    {{ file }}
 
-            <button @click="getfile(file)">
-                Télécharger
-            </button>
-        </div>
-    </div>
+                    <span class="badge badge-primary badge-pill" @click="getfile(file)"> 
+                        <font-awesome-icon icon="download" />
+                    </span>
+                </li>
+            </ul>
+        </template>
+    </Card>
 </template>
 
 <script>
 // import { contrastingColor } from "@/assets/kitUiFunctions"
 import axios from 'axios';
+import Card from "@/components/Card.vue"
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
+library.add(faDownload);
 
 export default {
     name: "History",
+    components: {
+        Card,
+        FontAwesomeIcon
+    },
     data() {
         return {
             history: [],
@@ -59,3 +75,10 @@ export default {
     }
 }
 </script>
+
+<style lang="css" scoped>
+    ul li span {
+        background-color: black;
+        cursor: pointer;
+    }
+</style>

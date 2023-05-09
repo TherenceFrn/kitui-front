@@ -301,7 +301,6 @@
 
           <button class="btn btn-primary" @click="generateKitUi">Export!</button>
         </form>
-        Thérence
         <History />
       </div>
 
