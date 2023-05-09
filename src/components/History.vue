@@ -39,7 +39,7 @@ export default {
         }
     },
     mounted() {
-        axios.get('http://127.0.0.1:3001/css')
+        axios.get(`${process.env.API_URL}/css`)
         .then(response => {
             this.history = response.data;
         })
@@ -49,16 +49,12 @@ export default {
     },
     methods: {
         getfile: function(filePath) {
-            console.log('GetFile')
-            console.log(filePath)
-            // premiere etape
-            axios.get('http://127.0.0.1:3001/cssFile', {
+            axios.get(`${process.env.API_URL}/cssFile`, {
                 params: {
                     path: filePath
                 }
             })
             .then(response => {
-                // deuxieme etape
                 const url = window.URL.createObjectURL(new Blob([response.data]));
                 const link = document.createElement('a');
                 link.href = url;

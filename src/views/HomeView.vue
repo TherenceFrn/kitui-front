@@ -555,7 +555,7 @@ export default {
     generateKitUi() {
       event.preventDefault()
       // Envoie la requête POST à l'adresse spécifiée
-      axios.post('http://127.0.0.1:3001/css', this.$data, {
+      axios.post(`${process.env.API_URL}/css`, this.$data, {
         responseType: 'blob' // Spécifie le type de réponse attendu : blob
       })
           .then(response => {
