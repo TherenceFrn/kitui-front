@@ -301,6 +301,8 @@
 
           <button class="btn btn-primary" @click="generateKitUi">Export!</button>
         </form>
+        Thérence
+        <History />
       </div>
 
       <div class="col col-lg-6">
@@ -382,6 +384,7 @@
 <script>
 import Button from "@/components/Button.vue"
 import Card from "@/components/Card.vue"
+import History from "@/components/History.vue"
 import {contrastingColor} from "@/assets/kitUiFunctions"
 import axios from 'axios';
 
@@ -389,7 +392,8 @@ export default {
   name: 'HomeView',
   components: {
     Card,
-    Button
+    Button,
+    History
   },
   data() {
     return {
@@ -563,7 +567,6 @@ export default {
             link.click();
           })
           .catch(error => {
-            console.log(":)");
             console.log(error);
           });
     }
