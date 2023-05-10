@@ -3,7 +3,7 @@ name: Build and Deploy to o2switch
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build:
