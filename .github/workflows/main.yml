@@ -24,9 +24,7 @@ jobs:
         uses: easingthemes/ssh-deploy@v3.0.0
         with:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-          SSH_USERNAME: ${{ secrets.USERNAME }}
-          SERVER_IP: ${{ secrets.SERVER_IP }}
-          LOCAL_FOLDER: ./dist/
-          REMOTE_FOLDER: /kitui-front/
           REMOTE_HOST: 109.234.161.130
           REMOTE_USER: yuoa3387
+          TARGET: /kitui-front/
+          ARGS: -rltgoDzvO
