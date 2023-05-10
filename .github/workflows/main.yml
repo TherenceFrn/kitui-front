@@ -23,10 +23,10 @@ jobs:
       - name: Deploy to o2switch
         uses: easingthemes/ssh-deploy@v3.0.0
         with:
-          ssh-private-key: ${{ secrets.PRIVATE_KEY }}
-          ssh-username: ${{ secrets.USERNAME }}
-          server-ip: ${{ secrets.SERVER_IP }}
-          local-folder: ./dist/
-          remote-folder: /kitui-front/
-          remote-host: 109.234.161.130
-          remote-user: yuoa3387
+          SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          SSH_USERNAME: ${{ secrets.USERNAME }}
+          SERVER_IP: ${{ secrets.SERVER_IP }}
+          LOCAL_FOLDER: ./dist/
+          REMOTE_FOLDER: /kitui-front/
+          REMOTE_HOST: 109.234.161.130
+          REMOTE_USER: yuoa3387
