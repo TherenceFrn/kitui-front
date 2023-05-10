@@ -1,0 +1,28 @@
+name: Build and Deploy to o2switch
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to o2switch
+        uses: easingthemes/ssh-deploy@v2.0.1
+        with:
+          ssh-private-key: ${{ secrets.PRIVATE_KEY }}
+          ssh-username: ${{ secrets.USERNAME }}
+          server-ip: ${{ secrets.SERVER_IP }}
+          local-folder: ./dist/
+          remote-folder: /kitui-front/
