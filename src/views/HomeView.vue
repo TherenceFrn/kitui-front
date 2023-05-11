@@ -593,11 +593,16 @@ header {
 header h1 {
   text-align: center;
   font-weight: bold;
+  color: #D81E5B;
 }
 
 h2 {
   font-weight: bold;
   margin-bottom: 25px;
+}
+
+h3 {
+  color: #D81E5B;
 }
 
 .container {
@@ -627,5 +632,14 @@ h2 {
 
 form button {
   float: right;
+  background-color: #D81E5B;
+  border-color: #761231;
+}
+
+form button:hover,
+form button:focus,
+form button:active {
+  background-color: #761231 !important;
+  border-color: #761231 !important;
 }
 </style>
