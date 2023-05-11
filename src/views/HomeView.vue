@@ -1,7 +1,10 @@
 <template>
   <main class="container">
     <header>
-      <h1>Kit UI Generator</h1>
+      <h1>
+        <font-awesome-icon icon="file-code" />
+        Kit UI Generator
+      </h1>
     </header>
 
     <div class="row">
@@ -372,11 +375,12 @@
                                 }">Click me!</a>
               </template>
             </Card>
+            <h2 class="title">
+              Historique
+            </h2>
+            <History />
           </div>
         </div>
-      </div>
-      <div class="col col-lg-6">
-        <History />
       </div>
     </div>
   </main>
@@ -386,15 +390,21 @@
 import Button from "@/components/Button.vue"
 import Card from "@/components/Card.vue"
 import History from "@/components/History.vue"
-import {contrastingColor} from "@/assets/kitUiFunctions"
+import { contrastingColor } from "@/assets/kitUiFunctions"
 import axios from 'axios';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faFileCode } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
+library.add(faFileCode);
 
 export default {
   name: 'HomeView',
   components: {
     Card,
     Button,
-    History
+    History,
+    FontAwesomeIcon
   },
   data() {
     return {
@@ -576,6 +586,19 @@ export default {
 </script>
 
 <style scoped>
+header {
+  margin-bottom: 50px;
+}
+
+header h1 {
+  text-align: center;
+  font-weight: bold;
+}
+
+h2 {
+  font-weight: bold;
+  margin-bottom: 25px;
+}
 
 .container {
   margin: 25px auto;
@@ -600,5 +623,9 @@ export default {
   display: grid;
   grid-template-columns: 100px repeat(3, 1fr);
   gap: 10px;
+}
+
+form button {
+  float: right;
 }
 </style>
