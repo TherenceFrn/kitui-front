@@ -73,7 +73,6 @@ export default {
     formatDate: function (url) {
       url = url.split('/');
       let theDate = url[url.length - 1].split('.')[0];
-      theDate = Date.parse(theDate);
       return this.formatResult(theDate)
     },
 
@@ -83,7 +82,7 @@ export default {
         "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
       ];
 
-      const date = new Date(timestamp);
+      const date = new Date(parseInt(timestamp));
       const day = date.getDate();
       const month = months[date.getMonth()];
       const year = date.getFullYear();
